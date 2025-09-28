@@ -7,10 +7,10 @@ use Digest::MD5;
 # CLI handling
 
 unit sub MAIN(
-    Str  $file,                     #= Path to file containing hashes to be loaded
-    Str  :d($db)   = 'hashes.db',   #= Database file path
-    Str  :i($ip)   = 'localhost',   #= Bind to this address
-    UInt :p($port) = 9988,          #= Bind to this port
+    Str  $file,                      #= Path to file containing hashes to be loaded
+    Str  :d(:$db)   = 'hashes.db',   #= Database file path
+    Str  :i(:$ip)   = 'localhost',   #= Bind to this address
+    UInt :p(:$port) = 9988,          #= Bind to this port
 );
 
 ##########
