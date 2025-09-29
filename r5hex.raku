@@ -56,8 +56,7 @@ given IO::Socket::Async.bind-udp($ip, $port) -> $udp-sock {
                 say "[$caddr] '$hexdigest' => '$plain'";
 
                 if md5($plain).map({sprintf("%02x", $_)}).join ~~ rx:i/$hexdigest/ {
-                    try {
-                        my $entry    = MD5Entry.^load(:$hexdigest);
+                    if MD5Entry.^load(:$hexdigest) -> $entry {
                         $entry.plain = $plain;
                         $entry.^save;
                         $udp-sock.print-to: $c.hostname, $c.port, "Thanks !\n";
